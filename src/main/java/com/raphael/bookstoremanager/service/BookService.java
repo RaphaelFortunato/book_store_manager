@@ -3,14 +3,11 @@ package com.raphael.bookstoremanager.service;
 import com.raphael.bookstoremanager.dto.BookDTO;
 import com.raphael.bookstoremanager.dto.MessageResponseDTO;
 import com.raphael.bookstoremanager.entity.Book;
+import com.raphael.bookstoremanager.exception.BookNotFoundException;
 import com.raphael.bookstoremanager.mapper.BookMapper;
 import com.raphael.bookstoremanager.repository.Bookrepository;
-import io.micrometer.core.ipc.http.HttpSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.Optional;
 
 @Service
 public class BookService {
@@ -35,9 +32,9 @@ public class BookService {
 
     }
 
-    public BookDTO findById(Long id) {
-        Optional<Book> optionalBook = bookrepository.findById(id);
-        return bookMapper.toDTO(optionalBook.get());
+    public BookDTO findById(Long id) throws BookNotFoundException {
+        Book book = bookrepository.findById(id).orElseThrow(()-> new BookNotFoundException(id));
+        return bookMapper.toDTO(book);
 
     }
 
