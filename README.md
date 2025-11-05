@@ -37,6 +37,7 @@ Durante o desenvolvimento deste projeto, foram explorados os seguintes tópicos:
 - 🔗 **Git / GitHub**
 - 🧪 **Postman** (para testes de integração)
 - ☁️ **Render** (para deploy)
+- 🐳 **Docker**
 
 ---
 
