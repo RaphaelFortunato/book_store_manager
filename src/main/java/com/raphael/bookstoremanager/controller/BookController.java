@@ -25,5 +25,10 @@ public class BookController {
         return bookService.create(bookDTO);
     }
 
+    @GetMapping("/{id}")
+    public BookDTO findById(@PathVariable Long id){
+        return bookService.findById(id);
+    }
+
 
 }
